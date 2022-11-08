@@ -193,7 +193,12 @@ class MaterialUiPhoneNumber extends React.Component {
     const { onlyCountries } = this.state;
     const { disableCountryCode } = this.props;
 
-    const newSelectedCountry = find(onlyCountries, { iso2: country });
+    let newSelectedCountry = find(onlyCountries, { iso2: country });
+
+    if(!newSelectedCountry) {
+      country = "us"
+      newSelectedCountry = find(onlyCountries, { iso2: country });
+    }
 
     this.setState({
       defaultCountry: country,
